@@ -1,168 +1,341 @@
 <!DOCTYPE html>
-<html lang="zh-Hant" class="dark">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>­Ó¤H­º­¶ - ¶q¤Æ¥æ©ö & ¦Û°Ê¤Æ¤uµ{®v</title>
-    
-    <!-- ¤Ş¤J Tailwind CSS -->
+    <title>è»Ÿé«”å·¥ç¨‹å¸« | é‡åŒ–äº¤æ˜“å°ˆå®¶</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- ¤Ş¤J Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* ¦Û©w¸q¼Ë¦¡»P°Êµe */
         body {
-            font-family: 'Noto Sans TC', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            box-sizing: border-box;
         }
-
-        .font-mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        /* ©w¸q¶i³õ°Êµe */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
+        
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
-        /* À³¥Î°Êµe */
-        .animate-fadeInUp {
-            animation: fadeInUp 0.5s ease-out forwards;
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
         
-        /* ¬°¨C­Ó¶µ¥Ø³]¸m©µ¿ğ */
-        .profile-card { opacity: 0; animation-delay: 0.2s; }
-        .intro-text { opacity: 0; animation-delay: 0.4s; }
-        .link-1 { opacity: 0; animation-delay: 0.6s; }
-        .link-2 { opacity: 0; animation-delay: 0.7s; }
-        .link-3 { opacity: 0; animation-delay: 0.8s; }
-        .link-4 { opacity: 0; animation-delay: 0.9s; }
-
-        /* ¥DÃD¤Á´««ö¶sªºÂà³õ®ÄªG */
-        #theme-toggle svg {
-            transition: transform 0.3s ease-in-out;
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
-        .dark #theme-toggle .sun-icon {
-            transform: rotate(90deg) scale(0);
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
         }
-        .dark #theme-toggle .moon-icon {
-            transform: rotate(0deg) scale(1);
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
         }
-        #theme-toggle .moon-icon {
-            transform: rotate(-90deg) scale(0);
+        
+        .animate-pulse-custom {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .dark .gradient-bg {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark .glass-effect {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .link-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .link-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dark .link-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .typing-animation {
+            border-right: 2px solid;
+            animation: typing 3s steps(30) infinite, blink 1s infinite;
+        }
+        
+        @keyframes typing {
+            0%, 100% { width: 0; }
+            50% { width: 100%; }
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: currentColor; }
+        }
+        
+        .tech-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .tech-icon:hover {
+            transform: rotate(360deg) scale(1.2);
         }
     </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
-
-    <!-- ¥DÃD¤Á´««ö¶s -->
-    <button id="theme-toggle" class="fixed top-4 right-4 p-2 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-900 z-10">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon absolute"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+<body class="min-h-screen gradient-bg transition-all duration-500">
+    <!-- Theme Toggle -->
+    <button id="themeToggle" class="fixed top-6 right-6 z-50 p-3 rounded-full glass-effect text-white hover:scale-110 transition-all duration-300">
+        <i class="fas fa-moon text-xl"></i>
     </button>
 
-    <div class="min-h-screen flex items-center justify-center px-4 py-8">
-        <div class="w-full max-w-md mx-auto">
-            
-            <!-- ­Ó¤H¸ê®Æ¥d -->
-            <div class="profile-card animate-fadeInUp text-center">
-                <img src="https://placehold.co/128x128/1F2937/FFFFFF?text=ÀY¹³" alt="­Ó¤HÀY¹³" class="w-28 h-28 md:w-32 md:h-32 rounded-full mx-auto mb-4 border-4 border-white dark:border-gray-700 shadow-lg">
-                <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">§Aªº¦W¦r</h1>
-                <p class="font-mono text-sm md:text-base text-indigo-500 dark:text-indigo-400 mt-1">Quant Developer / Automation Engineer</p>
-            </div>
-
-            <!-- Â²¤¶¤å¦r -->
-            <div class="intro-text animate-fadeInUp text-center bg-white dark:bg-gray-800/50 p-4 md:p-6 rounded-xl shadow-md my-6 md:my-8">
-                <p class="text-gray-600 dark:text-gray-300">
-                    ±Mª`©ó§Q¥Î Python ©M¾÷¾¹¾Ç²ß«Øºc°ª®Ä²vªº¦Û°Ê¤Æ¥æ©öµ¦²¤¡C¼ö°J©ó±´¯Á¥«³õ¼Æ¾Ú­I«áªº³W«ß¡A¨Ã±N¨äÂà¤Æ¬°¥i¾aªºµ{¦¡½X¡C
-                </p>
-            </div>
-
-            <!-- ³sµ²¦Cªí -->
-            <div class="space-y-4">
-                <a href="#" target="_blank" class="link-1 animate-fadeInUp group flex items-center p-4 w-full bg-gray-800 dark:bg-gray-800 text-white rounded-lg transition-all duration-300 hover:scale-105 hover:bg-gray-900 dark:hover:bg-gray-700 shadow-lg">
-                    <i data-lucide="github" class="w-6 h-6 mr-4 transition-transform duration-300 group-hover:rotate-[-15deg]"></i>
-                    <span class="flex-grow text-center font-semibold">GitHub</span>
-                </a>
-                
-                <a href="mailto:your-email@example.com" class="link-2 animate-fadeInUp group flex items-center p-4 w-full bg-blue-600 dark:bg-blue-600 text-white rounded-lg transition-all duration-300 hover:scale-105 hover:bg-blue-700 dark:hover:bg-blue-500 shadow-lg">
-                    <i data-lucide="mail" class="w-6 h-6 mr-4 transition-transform duration-300 group-hover:rotate-[-15deg]"></i>
-                    <span class="flex-grow text-center font-semibold">Email</span>
-                </a>
-                
-                <a href="#" target="_blank" class="link-3 animate-fadeInUp group flex items-center p-4 w-full bg-sky-600 dark:bg-sky-700 text-white rounded-lg transition-all duration-300 hover:scale-105 hover:bg-sky-700 dark:hover:bg-sky-600 shadow-lg">
-                    <i data-lucide="linkedin" class="w-6 h-6 mr-4 transition-transform duration-300 group-hover:rotate-[-15deg]"></i>
-                    <span class="flex-grow text-center font-semibold">LinkedIn</span>
-                </a>
-
-                <a href="#" target="_blank" class="link-4 animate-fadeInUp group flex items-center p-4 w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white rounded-lg transition-all duration-300 hover:scale-105 shadow-lg">
-                    <i data-lucide="instagram" class="w-6 h-6 mr-4 transition-transform duration-300 group-hover:rotate-[-15deg]"></i>
-                    <span class="flex-grow text-center font-semibold">Instagram</span>
-                </a>
+    <div class="container mx-auto px-4 py-8 min-h-screen flex flex-col justify-center">
+        <!-- Profile Section -->
+        <div class="text-center mb-12 animate-fadeInUp">
+            <div class="w-32 h-32 mx-auto mb-6 rounded-full glass-effect flex items-center justify-center animate-float">
+                <i class="fas fa-chart-line text-5xl text-white"></i>
             </div>
             
-            <footer class="text-center mt-8 text-xs text-gray-500 dark:text-gray-400 font-mono">
-                <p>&copy; <span id="year"></span> §Aªº¦W¦r. All Rights Reserved.</p>
-            </footer>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
+                è»Ÿé«”å·¥ç¨‹å¸«
+            </h1>
+            
+            <div class="text-xl md:text-2xl text-white/90 mb-6 h-8 overflow-hidden">
+                <div class="typing-animation whitespace-nowrap">é‡åŒ–äº¤æ˜“ Ã— è‡ªå‹•åŒ–å°ˆå®¶</div>
+            </div>
+            
+            <p class="text-white/80 max-w-2xl mx-auto text-lg leading-relaxed">
+                å°ˆæ³¨æ–¼é‡‘èç§‘æŠ€èˆ‡é‡åŒ–äº¤æ˜“ç³»çµ±é–‹ç™¼ï¼Œé‹ç”¨æ©Ÿå™¨å­¸ç¿’èˆ‡å¤§æ•¸æ“šåˆ†ææ‰“é€ æ™ºèƒ½æŠ•è³‡ç­–ç•¥ã€‚
+                è‡´åŠ›æ–¼å°‡è¤‡é›œçš„é‡‘èé‚è¼¯è½‰åŒ–ç‚ºé«˜æ•ˆçš„è‡ªå‹•åŒ–è§£æ±ºæ–¹æ¡ˆã€‚
+            </p>
+        </div>
 
+        <!-- Tech Stack Icons -->
+        <div class="flex justify-center space-x-6 mb-12 animate-fadeInUp" style="animation-delay: 0.2s;">
+            <div class="tech-icon text-white/70 hover:text-white">
+                <i class="fab fa-python text-3xl"></i>
+            </div>
+            <div class="tech-icon text-white/70 hover:text-white">
+                <i class="fab fa-js-square text-3xl"></i>
+            </div>
+            <div class="tech-icon text-white/70 hover:text-white">
+                <i class="fas fa-database text-3xl"></i>
+            </div>
+            <div class="tech-icon text-white/70 hover:text-white">
+                <i class="fas fa-robot text-3xl"></i>
+            </div>
+            <div class="tech-icon text-white/70 hover:text-white">
+                <i class="fas fa-brain text-3xl"></i>
+            </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="max-w-md mx-auto space-y-4 animate-fadeInUp" style="animation-delay: 0.4s;">
+            <!-- GitHub -->
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" 
+               class="link-card flex items-center p-4 rounded-2xl glass-effect text-white hover:text-white group">
+                <div class="w-12 h-12 rounded-xl bg-gray-800 flex items-center justify-center mr-4 group-hover:bg-gray-700 transition-colors">
+                    <i class="fab fa-github text-xl"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-semibold text-lg">GitHub</h3>
+                    <p class="text-white/70 text-sm">é–‹æºå°ˆæ¡ˆèˆ‡ç¨‹å¼ç¢¼</p>
+                </div>
+                <i class="fas fa-external-link-alt text-white/50 group-hover:text-white transition-colors"></i>
+            </a>
+
+            <!-- Email -->
+            <a href="mailto:your.email@example.com" 
+               class="link-card flex items-center p-4 rounded-2xl glass-effect text-white hover:text-white group">
+                <div class="w-12 h-12 rounded-xl bg-red-500 flex items-center justify-center mr-4 group-hover:bg-red-400 transition-colors">
+                    <i class="fas fa-envelope text-xl"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-semibold text-lg">Email</h3>
+                    <p class="text-white/70 text-sm">å•†æ¥­åˆä½œèˆ‡è¯ç¹«</p>
+                </div>
+                <i class="fas fa-external-link-alt text-white/50 group-hover:text-white transition-colors"></i>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+               class="link-card flex items-center p-4 rounded-2xl glass-effect text-white hover:text-white group">
+                <div class="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center mr-4 group-hover:bg-blue-500 transition-colors">
+                    <i class="fab fa-linkedin text-xl"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-semibold text-lg">LinkedIn</h3>
+                    <p class="text-white/70 text-sm">å°ˆæ¥­ç¶“æ­·èˆ‡äººè„ˆ</p>
+                </div>
+                <i class="fas fa-external-link-alt text-white/50 group-hover:text-white transition-colors"></i>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+               class="link-card flex items-center p-4 rounded-2xl glass-effect text-white hover:text-white group">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center mr-4 group-hover:from-purple-400 group-hover:to-pink-400 transition-all">
+                    <i class="fab fa-instagram text-xl"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-semibold text-lg">Instagram</h3>
+                    <p class="text-white/70 text-sm">ç”Ÿæ´»åˆ†äº«èˆ‡æŠ€è¡“å¿ƒå¾—</p>
+                </div>
+                <i class="fas fa-external-link-alt text-white/50 group-hover:text-white transition-colors"></i>
+            </a>
+        </div>
+
+        <!-- Current Focus -->
+        <div class="text-center mt-12 animate-fadeInUp" style="animation-delay: 0.6s;">
+            <div class="glass-effect rounded-2xl p-6 max-w-lg mx-auto">
+                <h3 class="text-white font-semibold text-lg mb-3">
+                    <i class="fas fa-rocket mr-2 animate-pulse-custom"></i>
+                    ç›®å‰å°ˆæ³¨
+                </h3>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <span class="px-3 py-1 bg-white/20 rounded-full text-white/90 text-sm">æ·±åº¦å­¸ç¿’</span>
+                    <span class="px-3 py-1 bg-white/20 rounded-full text-white/90 text-sm">æ¼”ç®—æ³•äº¤æ˜“</span>
+                    <span class="px-3 py-1 bg-white/20 rounded-full text-white/90 text-sm">é¢¨éšªç®¡ç†</span>
+                    <span class="px-3 py-1 bg-white/20 rounded-full text-white/90 text-sm">å€å¡Šéˆ</span>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        // ´è¬V Lucide Icons
-        lucide.createIcons();
-
-        // ³]©w¦~¥÷
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // --- ¥DÃD¤Á´«ÅŞ¿è ---
-        const themeToggle = document.getElementById('theme-toggle');
-        const htmlEl = document.documentElement;
-
-        // ÀË¬d localStorage ¤¤¬O§_¦³¤wÀx¦sªº¥DÃD°¾¦n
-        const savedTheme = localStorage.getItem('theme');
-
-        // ªì©l¤Æ¥DÃD
-        if (savedTheme) {
-            htmlEl.className = savedTheme;
-        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            htmlEl.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            htmlEl.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-        }
-
-        // ºÊÅ¥«ö¶sÂIÀ»¨Æ¥ó
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        
+        let isDark = false;
+        
         themeToggle.addEventListener('click', () => {
-            if (htmlEl.classList.contains('dark')) {
-                htmlEl.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
+            isDark = !isDark;
+            
+            if (isDark) {
+                body.classList.add('dark');
+                icon.className = 'fas fa-sun text-xl';
             } else {
-                htmlEl.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
+                body.classList.remove('dark');
+                icon.className = 'fas fa-moon text-xl';
             }
         });
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all animated elements
+        document.querySelectorAll('.animate-fadeInUp').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            observer.observe(el);
+        });
+        
+        // Typing animation
+        const typingElement = document.querySelector('.typing-animation');
+        const texts = ['é‡åŒ–äº¤æ˜“ Ã— è‡ªå‹•åŒ–å°ˆå®¶', 'Quantitative Trading Expert', 'Automation Specialist'];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        
+        function typeText() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            let typeSpeed = isDeleting ? 50 : 100;
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typeSpeed = 500;
+            }
+            
+            setTimeout(typeText, typeSpeed);
+        }
+        
+        // Start typing animation after page load
+        setTimeout(typeText, 1000);
+        
+        // Add click ripple effect to buttons
+        document.querySelectorAll('.link-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                const ripple = document.createElement('div');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+        
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'984f65d0e4428091',t:'MTc1ODg1NDQzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

@@ -1,38 +1,39 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>å€‹äººåŒ–é€£çµé¦–é </title>
-    <!-- å¼•å…¥ Tailwind CSS -->
+    <title>­Ó¤H­º­¶ - ¶q¤Æ¥æ©ö & ¦Û°Ê¤Æ¤uµ{®v</title>
+    
+    <!-- ¤Ş¤J Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- å¼•å…¥ Google Fonts -->
+    
+    <!-- ¤Ş¤J Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
-        /* è‡ªå®šç¾©æ¨£å¼å’Œå‹•ç•« */
+        /* ¦Û©w¸q¼Ë¦¡»P°Êµe */
         body {
-            font-family: 'Inter', 'Noto Sans TC', sans-serif;
-            background: linear-gradient(-45deg, #1a202c, #2d3748, #4a5568, #2d3748);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            font-family: 'Noto Sans TC', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* èƒŒæ™¯æ¼¸è®Šå‹•ç•« */
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
         }
-        
-        /* å…ƒç´ è¼‰å…¥å‹•ç•« */
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-            opacity: 0;
+
+        /* ©w¸q¶i³õ°Êµe */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -44,71 +45,124 @@
             }
         }
 
-        /* ç‚ºæ¯å€‹é€£çµæŒ‰éˆ•è¨­ç½®å‹•ç•«å»¶é² */
-        .link-item-1 { animation-delay: 0.2s; }
-        .link-item-2 { animation-delay: 0.3s; }
-        .link-item-3 { animation-delay: 0.4s; }
-        .link-item-4 { animation-delay: 0.5s; }
+        /* À³¥Î°Êµe */
+        .animate-fadeInUp {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+        
+        /* ¬°¨C­Ó¶µ¥Ø³]¸m©µ¿ğ */
+        .profile-card { opacity: 0; animation-delay: 0.2s; }
+        .intro-text { opacity: 0; animation-delay: 0.4s; }
+        .link-1 { opacity: 0; animation-delay: 0.6s; }
+        .link-2 { opacity: 0; animation-delay: 0.7s; }
+        .link-3 { opacity: 0; animation-delay: 0.8s; }
+        .link-4 { opacity: 0; animation-delay: 0.9s; }
+
+        /* ¥DÃD¤Á´««ö¶sªºÂà³õ®ÄªG */
+        #theme-toggle svg {
+            transition: transform 0.3s ease-in-out;
+        }
+        .dark #theme-toggle .sun-icon {
+            transform: rotate(90deg) scale(0);
+        }
+        .dark #theme-toggle .moon-icon {
+            transform: rotate(0deg) scale(1);
+        }
+        #theme-toggle .moon-icon {
+            transform: rotate(-90deg) scale(0);
+        }
     </style>
 </head>
-<body class="text-white">
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
 
-    <div class="container mx-auto flex flex-col items-center justify-center min-h-screen px-4 py-8">
+    <!-- ¥DÃD¤Á´««ö¶s -->
+    <button id="theme-toggle" class="fixed top-4 right-4 p-2 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-900 z-10">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon absolute"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
 
-        <!-- å€‹äººè³‡æ–™å€ -->
-        <div class="text-center w-full max-w-md">
-            <!-- é ­åƒ -->
-            <div class="fade-in-up">
-                <img src="https://placehold.co/128x128/718096/E2E8F0?text=é ­åƒ" alt="å€‹äººé ­åƒ" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-gray-600 shadow-lg">
-            </div>
-
-            <!-- å§“åèˆ‡è·ç¨± -->
-            <div class="fade-in-up" style="animation-delay: 0.1s;">
-                <h1 class="text-3xl font-bold">ä½ çš„åå­—</h1>
-                <p class="text-gray-300 mt-2 text-lg">è»Ÿé«”å·¥ç¨‹å¸« | è‡ªå‹•åŒ–æŠ€è¡“ & é‡åŒ–äº¤æ˜“</p>
-            </div>
+    <div class="min-h-screen flex items-center justify-center px-4 py-8">
+        <div class="w-full max-w-md mx-auto">
             
-            <!-- ç¤¾ç¾¤é€£çµåˆ—è¡¨ -->
-            <div class="mt-8 space-y-4 w-full">
-                <!-- GitHub -->
-                <a href="https://github.com/ä½ çš„å¸³è™Ÿ" target="_blank" rel="noopener noreferrer" 
-                   class="fade-in-up link-item-1 group flex items-center justify-center w-full bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-blue-400 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-blue-500/20">
-                    <svg class="w-6 h-6 mr-3 transition-transform duration-300 group-hover:rotate-12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"></path></svg>
-                    GitHub
-                </a>
+            <!-- ­Ó¤H¸ê®Æ¥d -->
+            <div class="profile-card animate-fadeInUp text-center">
+                <img src="https://placehold.co/128x128/1F2937/FFFFFF?text=ÀY¹³" alt="­Ó¤HÀY¹³" class="w-28 h-28 md:w-32 md:h-32 rounded-full mx-auto mb-4 border-4 border-white dark:border-gray-700 shadow-lg">
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">§Aªº¦W¦r</h1>
+                <p class="font-mono text-sm md:text-base text-indigo-500 dark:text-indigo-400 mt-1">Quant Developer / Automation Engineer</p>
+            </div>
 
-                <!-- Email -->
-                <a href="mailto:ä½ çš„ä¿¡ç®±@example.com"
-                   class="fade-in-up link-item-2 group flex items-center justify-center w-full bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-green-400 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-green-500/20">
-                    <svg class="w-6 h-6 mr-3 transition-transform duration-300 group-hover:-translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    Email
+            <!-- Â²¤¶¤å¦r -->
+            <div class="intro-text animate-fadeInUp text-center bg-white dark:bg-gray-800/50 p-4 md:p-6 rounded-xl shadow-md my-6 md:my-8">
+                <p class="text-gray-600 dark:text-gray-300">
+                    ±Mª`©ó§Q¥Î Python ©M¾÷¾¹¾Ç²ß«Øºc°ª®Ä²vªº¦Û°Ê¤Æ¥æ©öµ¦²¤¡C¼ö°J©ó±´¯Á¥«³õ¼Æ¾Ú­I«áªº³W«ß¡A¨Ã±N¨äÂà¤Æ¬°¥i¾aªºµ{¦¡½X¡C
+                </p>
+            </div>
+
+            <!-- ³sµ²¦Cªí -->
+            <div class="space-y-4">
+                <a href="#" target="_blank" class="link-1 animate-fadeInUp group flex items-center p-4 w-full bg-gray-800 dark:bg-gray-800 text-white rounded-lg transition-all duration-300 hover:scale-105 hover:bg-gray-900 dark:hover:bg-gray-700 shadow-lg">
+                    <i data-lucide="github" class="w-6 h-6 mr-4 transition-transform duration-300 group-hover:rotate-[-15deg]"></i>
+                    <span class="flex-grow text-center font-semibold">GitHub</span>
                 </a>
                 
-                <!-- LinkedIn -->
-                <a href="https://linkedin.com/in/ä½ çš„å¸³è™Ÿ" target="_blank" rel="noopener noreferrer"
-                   class="fade-in-up link-item-3 group flex items-center justify-center w-full bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-sky-400 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-sky-500/20">
-                    <svg class="w-6 h-6 mr-3 transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
-                    LinkedIn
+                <a href="mailto:your-email@example.com" class="link-2 animate-fadeInUp group flex items-center p-4 w-full bg-blue-600 dark:bg-blue-600 text-white rounded-lg transition-all duration-300 hover:scale-105 hover:bg-blue-700 dark:hover:bg-blue-500 shadow-lg">
+                    <i data-lucide="mail" class="w-6 h-6 mr-4 transition-transform duration-300 group-hover:rotate-[-15deg]"></i>
+                    <span class="flex-grow text-center font-semibold">Email</span>
+                </a>
+                
+                <a href="#" target="_blank" class="link-3 animate-fadeInUp group flex items-center p-4 w-full bg-sky-600 dark:bg-sky-700 text-white rounded-lg transition-all duration-300 hover:scale-105 hover:bg-sky-700 dark:hover:bg-sky-600 shadow-lg">
+                    <i data-lucide="linkedin" class="w-6 h-6 mr-4 transition-transform duration-300 group-hover:rotate-[-15deg]"></i>
+                    <span class="flex-grow text-center font-semibold">LinkedIn</span>
                 </a>
 
-                <!-- Instagram -->
-                <a href="https://instagram.com/ä½ çš„å¸³è™Ÿ" target="_blank" rel="noopener noreferrer"
-                   class="fade-in-up link-item-4 group flex items-center justify-center w-full bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-pink-400 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-pink-500/20">
-                     <svg class="w-6 h-6 mr-3 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163zm0 1.441c-3.117 0-3.486.01-4.714.066-2.502.115-3.805 1.4-3.921 3.921-.057 1.228-.066 1.597-.066 4.714s.01 3.486.066 4.714c.115 2.52 1.42 3.805 3.921 3.921 1.228.056 1.597.066 4.714.066s3.486-.01 4.714-.066c2.502-.115 3.805-1.4 3.921-3.921.057-1.228.066-1.597.066-4.714s-.01-3.486-.066-4.714c-.115-2.52-1.42-3.805-3.921-3.921-1.228-.056-1.597-.066-4.714-.066zM12 7.272a4.728 4.728 0 100 9.456 4.728 4.728 0 000-9.456zm0 7.58a2.852 2.852 0 110-5.704 2.852 2.852 0 010 5.704zm5.25-8.232a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z"></path></svg>
-                    Instagram
+                <a href="#" target="_blank" class="link-4 animate-fadeInUp group flex items-center p-4 w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white rounded-lg transition-all duration-300 hover:scale-105 shadow-lg">
+                    <i data-lucide="instagram" class="w-6 h-6 mr-4 transition-transform duration-300 group-hover:rotate-[-15deg]"></i>
+                    <span class="flex-grow text-center font-semibold">Instagram</span>
                 </a>
             </div>
-        </div>
+            
+            <footer class="text-center mt-8 text-xs text-gray-500 dark:text-gray-400 font-mono">
+                <p>&copy; <span id="year"></span> §Aªº¦W¦r. All Rights Reserved.</p>
+            </footer>
 
-        <!-- é è…³ -->
-        <footer class="text-center text-gray-500 mt-12 fade-in-up" style="animation-delay: 0.8s;">
-            <p>&copy; <span id="current-year"></span> ä½ çš„åå­—. All Rights Reserved.</p>
-        </footer>
+        </div>
     </div>
-    
+
     <script>
-        // è‡ªå‹•æ›´æ–°å¹´ä»½
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+        // ´è¬V Lucide Icons
+        lucide.createIcons();
+
+        // ³]©w¦~¥÷
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // --- ¥DÃD¤Á´«ÅŞ¿è ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlEl = document.documentElement;
+
+        // ÀË¬d localStorage ¤¤¬O§_¦³¤wÀx¦sªº¥DÃD°¾¦n
+        const savedTheme = localStorage.getItem('theme');
+
+        // ªì©l¤Æ¥DÃD
+        if (savedTheme) {
+            htmlEl.className = savedTheme;
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            htmlEl.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            htmlEl.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        }
+
+        // ºÊÅ¥«ö¶sÂIÀ»¨Æ¥ó
+        themeToggle.addEventListener('click', () => {
+            if (htmlEl.classList.contains('dark')) {
+                htmlEl.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlEl.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
     </script>
 </body>
 </html>
